@@ -1,0 +1,47 @@
+{% extends 'expensemanager/base.html'%}
+{% block body %}
+<div class="container">
+    <h6>Daily transactions for {{day}}</h6>
+
+    <table class="table">
+        <tr>
+            <th>Date</th>
+            <th>Transaction Type</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+        
+        {% for objects in object_list %}
+        <tr>
+            <td>{{objects.date}}</td>
+            <td>{{objects.t_type}}</td>
+            <td>{{objects.category}}</td>
+            <td>{{objects.amount}}</td>
+            <td><a href="{% url 'update' objects.id %}" class="btn btn-info">Update</a>
+                <a href="{% url 'delete' objects.id %}" class="btn btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}}
+
+
+
+
+<!-- <h1>{{ day }}</h1>
+
+<ul>
+    {% for article in object_list %}
+        <li>{{ article.pub_date|date:"F j, Y" }}: {{ article.title }}</li>
+    {% endfor %}
+</ul> -->
+<!-- <p>
+    {% if previous_day %}
+        Previous Day: {{ previous_day }}
+    {% endif %}
+    {% if previous_day and next_day %}--{% endif %}
+    {% if next_day %}
+        Next Day: {{ next_day }}
+    {% endif %}
+</p> -->
