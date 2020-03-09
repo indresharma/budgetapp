@@ -2,6 +2,8 @@ from django import forms
 from .models import Transaction
 
 
+
+
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
@@ -9,4 +11,5 @@ class TransactionForm(forms.ModelForm):
             'date': forms.TextInput(attrs={'type':'date'}),
         }
         fields = ['date', 't_type', 'category', 'amount']
-        
+
+

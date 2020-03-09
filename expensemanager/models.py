@@ -9,6 +9,7 @@ trans_type = [
 
 category_types= [
     ('Bills', 'Bills'),
+    ('Rent', 'Rent'),
     ('Transportation', 'Transportation'),
     ('Shopping', 'Shopping'),
     ('Grocery', 'Grocery'),
@@ -19,7 +20,6 @@ category_types= [
     ('Other Income', 'Other Income'),
 
 ]
-
 
 
 class Transaction(models.Model):

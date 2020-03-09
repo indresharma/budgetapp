@@ -1,31 +1,9 @@
 {% extends 'expensemanager/base.html'%}
 {% block body %}
 <div class="container">
-    <h2>Current Monthly Transactions</h2>
-    <table class="table">
-        <tr>
-            <th>Date</th>
-            <th>Transaction Type</th>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Action</th>
-        </tr>
-        
-        {% for trans in transactions %}
-        <tr>
-            <td>{{trans.date}}</td>
-            <td>{{trans.t_type}}</td>
-            <td>{{trans.category}}</td>
-            <td>{{trans.amount}}</td>
-            <td><a href="{% url 'update' trans.id %}" class="btn btn-info">Update</a>
-                <a href="{% url 'delete' trans.id %}" class="btn btn-danger">Delete</a></td>
-        </tr>
-        {% endfor %}
-    </table>
-    <h5>Total : {{cm_total}}</h5>
-</div>
-<div class="container"></div>
-    <h2>Last Month Transactions </h2>
+    
+    </hr>
+    <h4>Last Months Transactions</h4>
     <table class="table">
         <tr>
             <th>Date</th>
@@ -36,6 +14,9 @@
         </tr>
         
         {% for trans in pm_transactions %}
+        {% if trans is None %}
+        <h1>No transactions in previous month</h1>
+        {%else%}
         <tr>
             <td>{{trans.date}}</td>
             <td>{{trans.t_type}}</td>
@@ -44,7 +25,10 @@
             <td><a href="{% url 'update' trans.id %}" class="btn btn-info">Update</a>
                 <a href="{% url 'delete' trans.id %}" class="btn btn-danger">Delete</a></td>
         </tr>
+        {% endif %}
         {% endfor %}
     </table>
+
+    <h5>Total Income: {{pm_total_income}} | Total Expense: {{pm_total_expense}}</h5>
 </div>
-{% endblock %}}
+{% endblock %}

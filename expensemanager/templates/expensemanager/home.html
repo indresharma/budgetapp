@@ -1,24 +1,72 @@
 {% extends 'expensemanager/base.html'%}
 {% block body %}
-    <table class="table">
-        <tr>
-            <th>Date</th>
-            <th>Transaction Type</th>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Action</th>
-        </tr>
+
+<div class="row">
+    <div class="col-md-12">
         
-        {% for trans in transactions %}
-        <tr>
-            <td>{{trans.date}}</td>
-            <td>{{trans.t_type}}</td>
-            <td>{{trans.category}}</td>
-            <td>{{trans.amount}}</td>
-            <td><a href="{% url 'update' trans.id %}" class="btn btn-info">Update</a>
-                <a href="{% url 'delete' trans.id %}" class="btn btn-danger">Delete</a></td>
-        </tr>
-        {% endfor %}
-    </table>
-    
+    </div>
+</div>    
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Select Date Range</h4>
+        <table class="table">
+            <form method="POST" action="{% url 'date_range' %}" class="form-control">
+                {% csrf_token %}
+                <div class="form-group">
+                <label for="startmonth">From: </label>
+                <input type="month" id="startmonth" name="startmonth" min="2019-01" value="2020-01">
+                <label for="endmonth">To: </label>
+                <input type="month" id="endmonth" name="endmonth" min="2019-01" value="2020-01">
+                <button type="submit" class="">Submit</button>
+                </div>
+            </form>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h4>For Expense Chart </h4>
+        <table class="table">
+            <form method="POST" action="{% url 'chart' %}" class="form-control">
+                {% csrf_token %}
+                <div class="form-group">
+                <label for="chartinput">From: </label>
+                <input type="month" id="chartinput" name="chartinput" min="2019-01" value="2020-01">
+                <button type="submit" class="">Submit</button>
+                </div>
+            </form>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h4>Last 25 Transactions</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Date</th>
+                <th>Transaction Type</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+            
+            {% for trans in transactions %}
+            <tr>
+                <td>{{trans.date}}</td>
+                <td>{{trans.t_type}}</td>
+                <td>{{trans.category}}</td>
+                <td>{{trans.amount}}</td>
+                <td><a href="{% url 'update' trans.id %}" class="btn btn-info">Update</a>
+                    <a href="{% url 'delete' trans.id %}" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>  
+
 {% endblock %}}

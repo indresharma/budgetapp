@@ -21,10 +21,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('today/', views.TransactionTodayArchiveView.as_view(), name="today"),
-    path('monthly/', views.monthlyView, name="monthly"),
-    # path('<int:year>/<int:month>/', views.MonthArchiveView.as_view(), name='monthly'),
+    path('monthly/', views.last_month_view, name="monthly"),
+    path('date_range/', views.date_range_view, name='date_range'),
     path('create/', views.TransactionCreateView.as_view(), name='create'),
     path('update/<int:pk>', views.TransactionUpdateView.as_view(), name="update"),
     path('delete/<int:pk>', views.TransactionDeleteView.as_view(), name="delete"),
+    path('chart', views.expense_chart, name="chart"),
     
 ]
